@@ -1,5 +1,6 @@
 [package]
 name = "pyrrhus_parser"
+description = "Pyrrhus parser"
 version.workspace = true
 edition.workspace = true
 rust-version.workspace = true

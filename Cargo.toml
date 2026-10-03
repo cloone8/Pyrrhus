@@ -1,0 +1,86 @@
+[workspace]
+resolver = "3"
+members = ["pyrrhus","pyrrhus_parser"]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.99"
+authors = ["Wouter de Bruijn <wouter@wutru.io>"]
+homepage = "https://github.com/cloone8/Pyrrhus"
+repository = "https://github.com/cloone8/Pyrrhus"
+license = "MPL-2.0"
+readme = "README.md"
+keywords = []
+categories = []
+
+[workspace.dependencies]
+### Workspace dependencies ###
+
+### External dependencies ###
+
+[profile.dev]
+strip = "none"
+lto = "off"
+opt-level = 1
+debug = "full"
+debug-assertions = true
+
+[profile.release]
+strip = true
+lto = true
+codegen-units = 1
+panic = "abort"
+
+[workspace.lints.rust]
+# Groups
+future_incompatible = { level = "warn", priority = -1 }
+nonstandard_style = { level = "warn", priority = -1 }
+
+# Individual lints
+missing_docs = "warn"
+unsafe_op_in_unsafe_fn = "warn"
+unreachable_pub = "warn"
+unused_crate_dependencies = "warn"
+missing_debug_implementations = "warn"
+
+[workspace.lints.clippy]
+cargo = { level = "warn", priority = -1 }
+pedantic = { level = "warn", priority = -1 }
+missing_assert_messages = "warn"
+missing_docs_in_private_items = "warn"
+missing_assert_message = "warn"
+allow_attributes_without_reason = "warn"
+too_many_lines = "warn"
+unused_self = "warn"
+mutex_integer = "warn"
+large_stack_arrays = "warn"
+large_types_passed_by_value = "warn"
+borrow_as_ptr = "warn"
+doc_broken_link = "warn"
+empty_drop = "warn"
+fallible_impl_from = "warn"
+fn_params_excessive_bools = "warn"
+infinite_loop = "warn"
+verbose_file_reads = "warn"
+unneeded_field_pattern = "warn"
+todo = "warn"
+suspicious_operation_groupings = "warn"
+needless_collect = "warn"
+needless_pass_by_ref_mut = "warn"
+needless_raw_strings = "warn"
+self_named_module_files = "deny"
+missing_fields_in_debug = "warn"
+
+similar_names = { level = "allow" }            # Too noisy and not that useful
+missing_panics_doc = { level = "allow" }       # I won't include a panic doc for every function that locks a mutex or rwlock
+missing_errors_doc = { level = "allow" }       # Error types should be limited in size and have docs themselves
+must_use_candidate = { level = "allow" }       # Not actually a problem
+manual_assert = { level = "allow" }            # Usually for a good reason when done
+cast_ptr_alignment = { level = "allow" }       # Common to cast u8 to other types
+struct_field_names = { level = "allow" }       # Too many false positives
+match_same_arms = { level = "allow" }          # Too ugly most of the time
+struct_excessive_bools = { level = "allow" }   # Mostly unnecessary
+cast_possible_truncation = { level = "allow" } # Too noisy
+cast_precision_loss = { level = "allow" }      # Too noisy
+cast_sign_loss = { level = "allow" }           # Too noisy
